@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %} Picture with ID {{picture.id}}{% endblock %}
+{% block content %}
+<div class="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="#">Fast Hosting</a>
+    <ul class="nav">
+      <li><a href="{% url imghost.views.index %}">Accueil</a></li>
+      <li><a href="{% url imghost.views.gallery %}">Gallerie</a></li>
+      <li><a href="{% url imghost.views.gallery_doc %}">Bibliotheque</a></li>
+    </ul>
+  </div>
+</div>
+<div style="margin-top: 100px;">
+<a href="{{ picture.image.url }}"><img src = "{{ picture.image.url_200x150 }}" alt="Picture" style= "border:0; margin:20px"></a>
+<br>
+<strong>Lien direct</strong>: localhost:8000{{ picture.image.url }}
+<br>
+<strong>Lien vers miniature</strong>: localhost:8000{{ picture.image.url_200x150 }}
+<br>
+<strong>Lien HTML</strong>: &lt;a href="localhost:8000{{ picture.image.url }}"&gt;&lt;img src = "localhost:8000{{ picture.image.url_200x150 }}" alt="Picture"&gt;&lt;/a&gt;
+<br><br>
+<a><input class="btn btn-inverse" type="button" onClick="window.location.href='{% url imghost.views.index %}'" value="Retour"/></a>
+</div>
+{% endblock %}

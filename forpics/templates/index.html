@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="#">Fast Hosting</a>
+    <ul class="nav">
+      <li class="active"><a href="#">Accueil</a></li>
+      <li><a href="{% url imghost.views.gallery %}">Gallerie</a></li>
+      <li><a href="{% url imghost.views.gallery_doc %}">Bibliotheque</a></li>
+    </ul>
+  </div>
+</div>
+<div style="margin-top: 100px; text-align: center;">
+<form action="{% url imghost.views.upload %}" method="post" enctype="multipart/form-data">{% csrf_token %}
+<input type="file" name="file" id="file"> 
+<input class="btn btn-success" type="submit" name="submit" value="Envoyer!">
+</form>
+{% if latest_picture %}
+<a href="{% url imghost.views.picture_detail latest_picture.id %}"><img src = "{{ latest_picture.image.url_200x150 }}" alt="Picture" style="border: 0; margin:20px;"></a>
+{% endif %}
+</div>
+<br>
+<div class="alert alert-success" style= "margin-top: 130px;">
+<h5>Nombre d'images:  {{latest_picture.id}}</h5>
+<h5>Nombre de documents: {{latest_document.id}}</h5>
+</div>
+<div class="alert alert-info" style= "margin-top: 30px;">
+<address>
+<h6>Une realisation de Guillaume Cyrille 
+    <a href="mailto:#">guillaume@et.esiea-ouest.fr</a>
+et Maldonado Julien
+    <a href="mailto:#">maldonado@et.esiea-ouest.fr</a>
+</address> </h6>
+</div>
+{% endblock %}

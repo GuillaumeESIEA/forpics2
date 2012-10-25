@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %} Document with ID {{document.id}}{% endblock %}
+{% block content %}
+<div class="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="#">Fast Hosting</a>
+    <ul class="nav">
+      <li><a href="{% url imghost.views.index %}">Accueil</a></li>
+      <li><a href="{% url imghost.views.gallery %}">Gallerie</a></li>
+      <li><a href="{% url imghost.views.gallery_doc %}">Bibliotheque</a></li>
+    </ul>
+  </div>
+</div>
+<div style="margin-top: 100px;">
+<strong>Nom</strong>: {{ document.document.name }}
+<br>
+<strong>Taille</strong>: {{ document.document.size }} octets
+<br>
+<strong>Telechargement</strong>: <a href='{{document.document.url}}'>localhost:8000{{ document.document.url }}</a>
+<br>
+<a><input class="btn btn-inverse" type="button" onClick="window.location.href='{% url imghost.views.index %}'" value="Retour"/></a>
+</div>
+{% endblock %}

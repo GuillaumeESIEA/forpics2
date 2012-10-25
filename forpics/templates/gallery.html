@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %} Gallerie{% endblock %}
+{% block content %}
+<div class="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="#">Fast Hosting</a>
+    <ul class="nav">
+      <li><a href="{% url imghost.views.index %}">Accueil</a></li>
+      <li class="active"><a href="#">Gallerie</a></li>
+      <li><a href="{% url imghost.views.gallery_doc %}">Bibliotheque</a></li>
+    </ul>
+  </div>
+</div>
+<strong>Nombre d'images: {{latest_picture.id}}</strong> 
+<br><br>
+{% for picture in album %}
+<a href="{{ picture.image.url }}"><img src = "{{ picture.image.url_200x150 }}" alt="Picture" style= "border:0; margin:20px"></a>
+{% endfor %}
+<br>
+<a><input class="btn btn-inverse" type="button" onClick="window.location.href='{% url imghost.views.index %}'" value="Retour"/></a>
+{% endblock %}

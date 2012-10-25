@@ -1,0 +1,40 @@
+INSTALL
+
+- Check that Python and Django are installed.
+For further information, see here:
+http://www.siteduzero.com/tutoriel-3-353631-telechargement-et-installation.html
+
+- Check that Python Imaging Library (PIL) is installed for your version
+  of python.
+http://www.pythonware.com/products/pil/
+
+- Create the directory /home/ProgWeb.
+
+- Copy and paste the directory /forpics at /home/ProgWeb/
+
+- Go to /home/ProgWeb/forpics and syn the database, juste in case:
+#python manage.py syncdb
+
+- Then run the Python server:
+# python manage.py runserver
+
+- Open your favorite browser and go to:
+http://<your server address IP>:8000
+
+- Enjoy! ;)
+
+
+If you decided to put the directory /forpics at a custom place, you
+will have to modify the files settings.py and url.py:
+
+- settings.py:
+MEDIA_ROOT = '<your_custom_dir>/forpics/media'
+
+TEMPLATE_DIRS = (
+	'<your_custom_dir>/forpics/templates'
+)
+
+- url.py:
+urlpatterns = patters('',
+	(r'^static/(?P<path>.*)$','django.views.static.serve',	{'document_root': '<your_custom_dir>/forpics/media'}),
+)
